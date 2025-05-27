@@ -190,17 +190,17 @@
   transition: transform 0.25s ease;
   width: 1rem;
   text-align: center;
-  order: 1; /* Стрелка первая */
+  order: 1; /* Стрелка перед текстом */
 }
 
 .sectionGroupTitle i:not(.fa-chevron-down):not(.fa-chevron-right) {
-  order: 2; /* Иконка секции вторая */
+  order: 3; /* Иконка секции после текста */
   color: inherit; /* Наследует цвет от заголовка */
 }
 
 .sectionGroupTitle span,
 .sectionGroupTitle > *:not(i) {
-  order: 3; /* Текст последний */
+  order: 2; /* Текст посередине */
 }
 
 /* Collapsed state - arrow points right */
