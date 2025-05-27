@@ -241,12 +241,14 @@
   padding: 1.5rem;
 }
 
-/* --- Content Sections --- */
+/* --- Content Sections (ИСПРАВЛЕНО: убрана grid-разметка) --- */
 .section {
   padding: 1.5rem 0;
   border-bottom: 1px solid var(--border-color);
   font-family: 'Roboto Mono', monospace;
   width: 100%;
+  /* Убираем grid-разметку, которая ограничивала ширину текста */
+  display: block;
 }
 
 .section:last-child {
