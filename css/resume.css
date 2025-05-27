@@ -272,10 +272,13 @@
 }
 
 /* --- Text styling for descriptions --- */
-.text {
-  color: var(--text-color);
+.text,
+.section .text,
+p.text {
+  color: var(--text-color) !important;
   line-height: 1.6;
   font-size: 0.95rem;
+  margin-bottom: 1.2rem;
 }
 .subsection {
   margin-left: 0;
@@ -387,7 +390,6 @@
   border-radius: 0.5rem;
   border-left: 3px solid var(--main-color);
   margin: 1.5rem 0;
-  font-style: italic;
   line-height: 1.6;
   color: var(--text-color);
   font-size: 0.95rem;
