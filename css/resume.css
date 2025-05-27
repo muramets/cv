@@ -246,12 +246,12 @@
 .settings-content.expanded {
   max-height: 5000px;
   opacity: 1;
-  padding: 1rem 1.5rem; /* Уменьшил с 1.5rem до 1rem */
+  padding: 1.5rem; /* Теперь padding не анимируется */
 }
 
 /* --- Content Sections (ИСПРАВЛЕНО: убрана grid-разметка) --- */
 .section {
-  padding: 1rem 0;
+  padding: 1.5rem 0;
   border-bottom: 1px solid var(--border-color);
   font-family: 'Roboto Mono', monospace;
   width: 100%;
@@ -270,13 +270,9 @@
 }
 
 .content-text p {
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
   color: var(--text-color);
   width: 100%;
-}
-
-.content-text p:first-child {
-  margin-top: 0;
 }
 
 .content-text p:last-child {
