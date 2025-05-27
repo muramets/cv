@@ -1,0 +1,40 @@
+/* ===== FILE: 00_theme_monkeytype.css ===== */
+/* Description: Exact color variables from Monkeytype interface */
+
+:root {
+  /* Primary background and surface colors */
+  --bg-color: #323437;           /* Main dark background */
+  --sub-alt-color: #2c2e31;      /* Darker backgrounds, cards */
+  --sub-color: #646669;          /* Inactive text, borders, icons */
+  
+  /* Text colors */
+  --text-color: #d1d0c5;         /* Primary text color - light beige */
+  --main-color: #e2b714;         /* Yellow accent - active elements, highlights */
+  --caret-color: #e2b714;        /* Caret color - same as main */
+  
+  /* Error states */
+  --error-color: #ca4754;        /* Red for errors */
+  --error-extra-color: #7e2a33;  /* Darker red for secondary errors */
+  
+  /* Colorful mode variants */
+  --colorful-error-color: #ca4754;
+  --colorful-error-extra-color: #7e2a33;
+  
+  /* Additional Monkeytype specific colors */
+  --inactive-color: #646669;     /* Inactive/muted elements */
+  --border-color: #444649;       /* Subtle borders */
+  --hover-color: #3c3e41;        /* Hover backgrounds */
+  
+  /* Text variants */
+  --text-color-faded: #8a8983;   /* Faded text */
+  --accent-color: #e2b714;       /* Same as main for consistency */
+}
+
+/* Dark theme adjustments for better contrast */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #323437;
+    --text-color: #d1d0c5;
+    --main-color: #e2b714;
+  }
+}
