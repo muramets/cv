@@ -1,194 +1,111 @@
 /* ===== FILE: 06_navigation.css ===== */
-/* Description: Styles for main site navigation (header/nav bar).
-   Assumes 00_theme_gruvbox_dark.css, 01_font_roboto_mono.css, 
-   and relevant button styles (04_buttons.css) are active. */
+/* Description: Navigation styles matching Monkeytype exactly */
 
-/* --- Site Header (from 02_core_layout.css, refined here for nav specifics) --- */
-/* .site-header might be defined in core_layout.css; this adds specific nav styling.
-   It assumes a structure like:
-   <header class="site-header">
-     <div class="logo-container">...</div>
-     <nav class="main-navigation">...</nav>
-   </header>
-*/
-
+/* --- Site Header --- */
 .site-header {
-  /* display: grid; already in core_layout */
-  /* grid-template-columns: auto 1fr; already in core_layout */
-  /* align-items: center; already in core_layout */
-  /* gap: 1rem; already in core_layout */
-  padding: 0.5rem 0; /* Adjust padding as needed, original had more complex setup */
-  user-select: none; /* Prevent text selection in nav */
+  background-color: var(--bg-color);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-/* --- Logo Styling (based on #logo in nav.scss) --- */
-.logo-container a, /* Assuming logo is a link */
-.logo-text { /* If logo is just text */
-  display: flex; /* Use flex for icon and text alignment */
+.header-content {
+  display: flex;
   align-items: center;
-  gap: 0.5rem; /* Space between icon and text */
+  justify-content: space-between;
+  height: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* --- Logo Styling --- */
+.logo-container a {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
   text-decoration: none;
-  color: var(--text-color); /* Default logo text color */
-  padding: 0.35rem 0.25rem; /* From #logo */
+  color: var(--text-color);
+  transition: color 0.125s ease;
 }
 
-.logo-container .icon svg { /* If SVG icon is used */
-  width: 2.5rem; /* From #logo .icon */
-  height: 2.5rem;
-  fill: var(--main-color); /* Logo icon color */
-  transition: fill 0.25s ease-in-out;
+.logo-container a:hover {
+  color: var(--main-color);
 }
 
-.logo-container .text {
-  font-family: 'Lexend Deca', 'Roboto Mono', sans-serif; /* Specific font for logo text, fallback to Roboto Mono */
-  font-size: 2rem; /* From #logo .text */
-  line-height: 1; /* Adjusted for better vertical alignment */
-  font-weight: 600; /* Slightly bolder for logo */
-  color: var(--text-color); /* Ensure it overrides default link if 'a' tag */
-  white-space: nowrap;
+.logo-container i {
+  font-size: 1.75rem;
+  color: var(--main-color);
 }
 
-.logo-container a:hover .icon svg,
-.logo-container a:focus .icon svg {
-  fill: var(--caret-color); /* Brighter color on hover/focus */
+.logo-text {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--text-color);
 }
 
-.logo-container a:focus-visible {
+/* --- Main Navigation --- */
+.main-navigation {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  color: var(--sub-color);
+  text-decoration: none;
+  border-radius: 0.5rem;
+  transition: all 0.125s ease;
+  font-size: 0.9rem;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.nav-item:hover {
+  color: var(--text-color);
+  background-color: var(--hover-color);
+}
+
+.nav-item i {
+  color: var(--main-color);
+  font-size: 0.9rem;
+}
+
+.nav-item:focus-visible {
   outline: 2px solid var(--main-color);
   outline-offset: 2px;
-  border-radius: 0.25rem;
 }
 
-
-/* --- Main Navigation (based on nav element in nav.scss) --- */
-.main-navigation {
-  display: flex; /* Use flexbox for nav items */
-  justify-content: flex-end; /* Align items to the right */
-  align-items: center;
-  gap: 0.5rem; /* Space between nav items */
-  font-size: 1rem; /* Base size for nav items */
+/* --- Responsive Navigation --- */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    gap: 1rem;
+    height: auto;
+    padding: 1rem;
+  }
+  
+  .main-navigation {
+    justify-content: center;
+  }
 }
 
-/* Styling for navigation links/buttons (assuming they use .text-button or .button classes) */
-.main-navigation .nav-item {
-  font-family: 'Roboto Mono', monospace;
-  color: var(--sub-color);
-  padding: 0.5em 0.75em; /* Standard padding for nav items */
-  text-decoration: none;
-  border-radius: 0.25rem; /* Or var(--roundness) */
-  transition: color 0.125s ease-in-out, background-color 0.125s ease-in-out;
-}
-
-.main-navigation .nav-item:hover,
-.main-navigation .nav-item:focus {
-  color: var(--text-color);
-  background-color: var(--sub-alt-color); /* Slight background on hover for clarity */
-}
-
-.main-navigation .nav-item.active { /* If there's an 'active' state for current page */
-  color: var(--main-color);
-  font-weight: bold; /* Or some other visual distinction */
-}
-
-.main-navigation .nav-item:focus-visible {
-  outline: 2px solid var(--main-color);
-  outline-offset: 1px;
-}
-
-/* Example: User account button/menu area (simplified from .accountButtonAndMenu) */
-.nav-user-account {
-  position: relative; /* For dropdown positioning */
-}
-
-.nav-user-account .user-button { /* The button to open the menu */
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
-  color: var(--sub-color);
-  background-color: transparent;
-  border: none;
-  padding: 0.5em;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  font-family: 'Roboto Mono', monospace;
-}
-
-.nav-user-account .user-button:hover,
-.nav-user-account .user-button:focus {
-  color: var(--text-color);
-  background-color: var(--sub-alt-color);
-}
-
-.nav-user-account .user-avatar { /* If avatar is used */
-  width: 1.5em; /* Adjust size */
-  height: 1.5em;
-  border-radius: 50%;
-  background-color: var(--sub-color); /* Placeholder background */
-  /* background-image: url('path-to-avatar.png'); */
-  background-size: cover;
-}
-
-.nav-user-account .user-name { /* Optional user name display */
-  font-size: 0.9em;
-}
-
-/* Basic Dropdown Menu (simplified from .menu in nav.scss) */
-.nav-dropdown-menu {
-  display: none; /* Hidden by default, shown by JS or :focus-within/:hover */
-  position: absolute;
-  top: 100%; /* Position below the button */
-  right: 0;
-  background-color: var(--sub-alt-color);
-  border: 1px solid var(--sub-color);
-  border-radius: 0.25rem; /* Or var(--roundness) */
-  padding: 0.5em 0;
-  min-width: 180px; /* Example width */
-  z-index: 100; /* Ensure it's above other content */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Subtle shadow */
-}
-
-.nav-user-account:hover .nav-dropdown-menu,
-.nav-user-account:focus-within .nav-dropdown-menu { /* Show on hover/focus-within */
-  display: block;
-}
-
-.nav-dropdown-menu .menu-item {
-  display: block;
-  font-family: 'Roboto Mono', monospace;
-  color: var(--text-color);
-  padding: 0.5em 1em;
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.nav-dropdown-menu .menu-item:hover,
-.nav-dropdown-menu .menu-item:focus {
-  background-color: var(--main-color);
-  color: var(--bg-color); /* Contrasting text for selected item */
-}
-
-.nav-dropdown-menu .menu-separator {
-  height: 1px;
-  background-color: var(--sub-color);
-  margin: 0.5em 0;
-}
-
-/* Styles for config buttons if they are part of nav (from .desktopConfig in nav.scss) */
-.nav-config-group {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem; /* Small gap between buttons in a group */
-}
-
-.nav-config-group .config-title {
-  font-size: 0.7em;
-  color: var(--sub-color);
-  margin-right: 0.5em;
-  text-transform: uppercase;
-}
-
-/* Config buttons would likely use .text-button style from 04_buttons.css */
-.nav-config-group .text-button {
-  padding: 0.25em 0.35em; /* Smaller padding for dense config buttons */
-  font-size: 0.8em; /* Smaller font size */
+@media (max-width: 480px) {
+  .logo-container i {
+    font-size: 1.5rem;
+  }
+  
+  .logo-text {
+    font-size: 1.25rem;
+  }
+  
+  .nav-item {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
 }
