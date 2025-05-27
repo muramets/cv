@@ -418,7 +418,7 @@ p.text {
 
 .skill-category {
   background-color: var(--hover-color);
-  padding: 1rem;
+  padding: 0.75rem;
   border-radius: 0.5rem;
   border: 1px solid var(--border-color);
 }
@@ -429,9 +429,9 @@ p.text {
   gap: 0.5rem;
   font-size: 1rem;
   color: var(--main-color);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
   border-bottom: 1px solid var(--border-color);
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.25rem;
   font-weight: 400;
 }
 
