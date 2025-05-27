@@ -271,7 +271,12 @@
   margin-bottom: 0;
 }
 
-/* --- Subsections --- */
+/* --- Text styling for descriptions --- */
+.text {
+  color: var(--text-color);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
 .subsection {
   margin-left: 0;
   margin-bottom: 1rem;
@@ -318,15 +323,15 @@
 
 .company-info {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 0.5rem;
   margin-bottom: 1rem;
   font-size: 0.95rem;
 }
 
 .company {
   font-weight: 400;
-  color: var(--text-color);
+  color: var(--sub-color);
 }
 
 .period {
@@ -485,27 +490,6 @@
   text-decoration-color: var(--main-color);
 }
 
-/* --- Footer --- */
-.site-footer {
-  border-top: 1px solid var(--border-color);
-  padding: 2rem 0;
-  text-align: center;
-  background-color: var(--bg-color);
-}
-
-.footer-content {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-.site-footer p {
-  color: var(--sub-color);
-  font-size: 0.85rem;
-  font-family: 'Roboto Mono', monospace;
-  margin: 0;
-}
-
 /* --- Responsive Design --- */
 @media (max-width: 768px) {
   .hero-typing-text {
@@ -533,9 +517,8 @@
   }
   
   .company-info {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.25rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
   
   .subsection {
@@ -612,7 +595,6 @@
 /* --- Print Styles --- */
 @media print {
   .site-header,
-  .site-footer,
   .theme-toggle {
     display: none;
   }
