@@ -75,7 +75,7 @@
 .hero-tagline {
   font-family: 'Roboto Mono', monospace;
   font-size: 1rem;
-  color: #646669;
+  color: #646669 !important;
   margin-bottom: 2rem;
   line-height: 1.4;
   text-align: center;
@@ -85,7 +85,7 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 3rem;
+  gap: 2rem;
   margin-top: 2rem;
 }
 
@@ -97,15 +97,16 @@
   text-decoration: none;
   font-family: 'Roboto Mono', monospace;
   font-size: 0.9rem;
-  transition: all 0.125s ease;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
+  transition: color 0.125s ease;
+  padding: 0;
+  border-radius: 0;
+  background: none;
 }
 
 .contact-item:hover {
   color: var(--main-color);
-  background-color: var(--hover-color);
-  transform: translateY(-2px);
+  background: none;
+  transform: none;
 }
 
 .contact-item i {
