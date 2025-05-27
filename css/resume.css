@@ -246,7 +246,7 @@
 .settings-content.expanded {
   max-height: 5000px;
   opacity: 1;
-  padding: 1.5rem; /* Теперь padding не анимируется */
+  padding: 1rem 1.5rem; /* Уменьшил с 1.5rem до 1rem */
 }
 
 /* --- Content Sections (ИСПРАВЛЕНО: убрана grid-разметка) --- */
