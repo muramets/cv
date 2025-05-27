@@ -1,0 +1,159 @@
+/* ===== FILE: 03_typography.css ===== */
+/* Description: Typography styles for headings, paragraphs, links, etc.
+   Assumes 00_theme_gruvbox_dark.css and 01_font_roboto_mono.css 
+   (or equivalent font setup) are active. */
+
+/* --- Base Text (Paragraphs) --- */
+p {
+  font-family: 'Roboto Mono', monospace;
+  color: var(--text-color);
+  line-height: 1.6; /* Slightly more than default for readability */
+  margin-bottom: 1rem; /* Space between paragraphs */
+}
+
+/* --- Headings --- */
+/* General heading styles */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto Mono', monospace; /* Consistent font for headings */
+  font-weight: 400; /* Regular weight, as bold might be too much for mono */
+  line-height: 1.3;
+  margin-top: 1.5rem; /* Space above headings */
+  margin-bottom: 0.75rem; /* Space below headings */
+  color: var(--text-color); /* Default heading color */
+}
+
+h1 {
+  font-size: 2.5rem; /* Example size, adjust as needed */
+  color: var(--main-color); /* Prominent color for H1 */
+}
+
+h2 {
+  font-size: 2rem;
+  color: var(--text-color);
+}
+
+h3 {
+  font-size: 1.75rem;
+  color: var(--sub-color); /* More subtle color for H3 */
+}
+
+h4 {
+  font-size: 1.5rem;
+  color: var(--sub-color);
+}
+
+h5 {
+  font-size: 1.25rem;
+  color: var(--sub-color);
+}
+
+h6 {
+  font-size: 1rem;
+  color: var(--sub-color);
+}
+
+/* --- Links --- */
+a {
+  font-family: 'Roboto Mono', monospace;
+  color: var(--main-color);
+  text-decoration: none; /* No underlines by default */
+  transition: color 0.125s ease-in-out, background-color 0.125s ease-in-out;
+
+  /* Optional: if you want underlines on hover/focus for accessibility */
+  /* text-decoration: underline; 
+     text-decoration-color: var(--sub-color); */
+}
+
+a:hover,
+a:focus {
+  color: var(--text-color); /* Or a brighter/lighter shade of --main-color */
+  /* text-decoration-color: var(--main-color); */
+}
+
+/* Optional: Specific focus style for accessibility. 
+   core_layout.css might have a generic one. This can be more specific. */
+a:focus-visible {
+  outline: 2px solid var(--main-color);
+  outline-offset: 2px;
+  border-radius: 2px; /* Slight rounding for the outline itself */
+}
+
+/* --- Blockquotes (example) --- */
+blockquote {
+  font-family: 'Roboto Mono', monospace;
+  margin: 1.5rem;
+  padding: 1rem;
+  padding-left: 1.5rem;
+  border-left: 4px solid var(--sub-color);
+  background-color: var(--sub-alt-color); /* Slight background differentiation */
+  color: var(--sub-color); /* Text inside blockquote can be slightly muted */
+}
+
+blockquote p {
+  margin-bottom: 0.5rem; /* Adjust spacing for paragraphs within blockquotes */
+  color: inherit; /* Inherit the blockquote's text color */
+}
+
+/* --- Code Blocks (basic styling, can be expanded) --- */
+pre {
+  font-family: 'Roboto Mono', monospace; /* Ensure monospaced font */
+  background-color: var(--sub-alt-color);
+  color: var(--text-color);
+  padding: 1rem;
+  border-radius: 0.25rem; /* Consistent with var(--roundness) if used elsewhere */
+  overflow-x: auto; /* Allow horizontal scrolling for long lines */
+  font-size: 0.9em; /* Code blocks often slightly smaller */
+  border: 1px solid var(--sub-color); /* Subtle border */
+}
+
+code {
+  font-family: 'Roboto Mono', monospace; /* Inline code */
+  background-color: var(--sub-alt-color);
+  color: var(--main-color); /* Inline code can use main color for emphasis */
+  padding: 0.2em 0.4em;
+  border-radius: 0.2rem;
+  font-size: 0.9em;
+}
+
+pre code { /* Reset for code inside pre */
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
+  border-radius: 0;
+  font-size: inherit;
+}
+
+/* --- Horizontal Rule (example) --- */
+hr {
+  border: 0;
+  height: 1px;
+  background-color: var(--sub-color);
+  margin: 2rem 0;
+}
+
+/* --- Lists (basic styling) --- */
+ul, ol {
+  font-family: 'Roboto Mono', monospace;
+  margin-bottom: 1rem;
+  padding-left: 2rem; /* Indentation for list items */
+}
+
+li {
+  margin-bottom: 0.5rem; /* Space between list items */
+}
+
+/* Add more typographic element styles as needed (e.g., small, strong, em) */
+strong {
+  font-weight: bold; /* Monospaced fonts might not have many weights; 'bold' might just be a browser rendering */
+  color: var(--main-color); /* Make bold text stand out */
+}
+
+em {
+  font-style: italic;
+  /* color: var(--main-color); */ /* Optional: color emphasis for italic */
+}
+
+small {
+  font-size: 0.85em;
+  color: var(--sub-color);
+}

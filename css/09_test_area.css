@@ -1,0 +1,226 @@
+/* ===== FILE: 09_test_area.css ===== */
+/* Description: Styles for the typing test area, including words, letters, and caret.
+   Assumes 00_theme_gruvbox_dark.css and 01_font_roboto_mono.css 
+   (or equivalent font setup) are active. */
+
+/* --- Typing Test Container (#typingTest) --- */
+#typingTest {
+  position: relative;
+  width: 100%; /* Or a max-width from a parent container */
+  margin: 0 auto; /* Centering if it has a max-width */
+  font-family: 'Roboto Mono', monospace;
+  font-size: 1.5rem; /* Base font size for test words, adjust as needed */
+  line-height: 1.8; /* Generous line height for readability */
+  user-select: none; /* Prevent text selection of words */
+  padding: 1rem 0; /* Padding around the words area */
+}
+
+/* --- Words Container (#words) --- */
+#words {
+  display: flex;
+  flex-wrap: wrap; /* Allow words to wrap to the next line */
+  align-items: flex-start; /* Align words at the start of each line */
+  height: fit-content; /* Adjust height to content */
+  /* Monkeytype uses specific line height calculations, this is a simplification */
+  padding-bottom: 0.5em; /* To account for hints or descenders */
+
+  /* Default letter colors (can be overridden by modes like 'colorfulMode' or 'flipped') */
+  --untyped-letter-color: var(--sub-color);
+  --correct-letter-color: var(--text-color);
+  --incorrect-letter-color: var(--error-color);
+  --extra-letter-color: var(--error-extra-color);
+  --caret-actual-color: var(--caret-color); /* For the actual caret if not a highlight */
+}
+
+/* --- Individual Word Styling (.word) --- */
+.word {
+  font-family: inherit; /* Inherit Roboto Mono */
+  font-size: inherit; /* Inherit from #typingTest */
+  line-height: inherit; /* Inherit from #typingTest */
+  margin: 0.25em 0.3em; /* Space around words (top/bottom, left/right) */
+  padding-bottom: 2px; /* Space for underline/border effects */
+  border-bottom: 2px solid transparent; /* Placeholder for active/error word indication */
+  position: relative; /* For hints or other positioned elements */
+  white-space: pre; /* Preserve spaces within words, important for some languages/modes */
+}
+
+/* --- Individual Letter Styling (letter tag inside .word) --- */
+.word letter {
+  display: inline-block; /* Allows individual styling */
+  font-family: inherit;
+  color: var(--untyped-letter-color); /* Default: untyped */
+  transition: color 0.1s ease-in-out, border-color 0.1s ease-in-out;
+  border-bottom: 0.05em solid transparent; /* For 'dead' letters style */
+}
+
+/* Letter States */
+.word letter.correct {
+  color: var(--correct-letter-color);
+}
+
+.word letter.incorrect {
+  color: var(--incorrect-letter-color);
+}
+
+.word letter.incorrect.extra { /* Extra letters typed that are incorrect */
+  color: var(--extra-letter-color);
+  /* Optional: text-decoration: line-through; */
+}
+
+.word letter.missing { /* For letters skipped if difficulty allows */
+  color: var(--untyped-letter-color);
+  opacity: 0.5;
+}
+
+/* Style for letters that are "dead" (already typed, before active caret) */
+.word.typed letter, /* A general class for words already processed */
+.word letter.dead { /* Specific class from Monkeytype if caret is past this letter */
+   /* color: var(--text-color); /* Or keep as --untyped-letter-color if not highlighting past */
+   border-bottom-color: var(--untyped-letter-color); /* Subtle underline for dead letters */
+}
+
+
+/* --- Caret Styling --- */
+/* Monkeytype uses different caret styles. This is a generic example.
+   A common way is to style the currently active letter or word. */
+
+/* Option 1: Highlighting the active letter (background style) */
+.word letter.active-char-highlight { /* Add this class to the active letter */
+  background-color: var(--caret-actual-color);
+  color: var(--bg-color); /* Text color contrasts with caret background */
+  border-radius: 0.1em;
+}
+
+/* Option 2: Underline style for active letter */
+.word letter.active-char-underline {
+  /* color: var(--caret-actual-color); /* Optionally change text color */
+  border-bottom: 2px solid var(--caret-actual-color);
+  padding-bottom: 0; /* Adjust if border makes it jump */
+}
+
+/* Option 3: Block caret (often done with a pseudo-element or by styling the letter itself) */
+.word letter.active-char-block {
+  background-color: var(--caret-actual-color);
+  color: var(--bg-color);
+  /* No border-radius for a sharp block */
+}
+
+/* If the caret is a separate element (like in some Monkeytype modes, #caret) */
+#caret-element {
+  position: absolute; /* Needs positioning relative to the active letter */
+  background-color: var(--caret-actual-color);
+  width: 2px; /* For a line caret */
+  height: 1.5em; /* Match letter height */
+  /* Add animation for smooth movement if desired */
+  transition: left 0.05s linear, top 0.05s linear; 
+}
+
+
+/* --- Active Word Styling --- */
+/* The word currently being typed */
+.word.active {
+  /* No specific style needed if only letters are highlighted.
+     Some themes might add a subtle background or border to the active word. */
+  /* border-bottom: 2px solid var(--main-color); */ /* Example: underline active word */
+}
+
+/* --- Error Indication on Word --- */
+/* If a word has an error and focus moves away, or if 'stopOnError: word' */
+.word.error {
+  border-bottom: 2px solid var(--error-color);
+  /* Or: background-color: color-mix(in srgb, var(--error-color) 10%, transparent); */
+}
+
+
+/* --- Special Characters (tabs, newlines - from Monkeytype) --- */
+.word letter.tabChar,
+.word letter.nlChar { /* Newline character */
+  margin: 0 0.25rem;
+  opacity: 0.3;
+  color: var(--sub-color); /* Use sub-color for these indicators */
+}
+.word letter.tabChar i, /* If using Font Awesome icons for these */
+.word letter.nlChar i {
+  line-height: 0; /* Adjust icon alignment */
+  font-style: normal; /* Ensure it's not italic if <i> is used */
+}
+
+
+/* --- Simplified Tape Mode (visuals only) --- */
+#words.tape {
+  display: block;
+  white-space: nowrap; /* All words in one line */
+  width: auto; /* Let it overflow */
+  /* overflow: hidden; /* Parent would need to handle masking/scrolling */
+  /* -webkit-mask-image: linear-gradient(...) */ /* As in original for fade effect */
+}
+#words.tape .word {
+  margin: 0.25em 0.6em 0.25em 0; /* Adjust margin for tape mode */
+  display: inline-block;
+  vertical-align: top;
+}
+
+
+/* --- Blind Mode (simplified visual effect) --- */
+#words.blind .word letter.incorrect,
+#words.blind .word letter.incorrect.extra {
+  color: var(--correct-letter-color); /* Make incorrect letters look like correct ones */
+}
+#words.blind .word.error {
+  border-bottom-color: transparent; /* Hide error underline on word */
+}
+
+/* --- Colorful Mode (uses main-color for correct letters) --- */
+#words.colorfulMode {
+  --correct-letter-color: var(--main-color);
+  --incorrect-letter-color: var(--colorful-error-color); /* Use specific colorful error variables */
+  --extra-letter-color: var(--colorful-error-extra-color);
+}
+
+/* --- Flipped Colors Mode (typed text is duller) --- */
+#words.flipped {
+  --correct-letter-color: var(--sub-color); /* Correctly typed letters are muted */
+  --untyped-letter-color: var(--text-color); /* Upcoming text is brighter */
+}
+#words.flipped.colorfulMode {
+  --correct-letter-color: var(--sub-color);
+  --untyped-letter-color: var(--main-color); /* Upcoming text is main color */
+}
+
+
+/* --- Hidden Input Field (common technique for capturing input) --- */
+#wordsInput { /* The actual <input> or <textarea> */
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  left: -9999px; /* Move off-screen */
+  pointer-events: none; /* Not interactive */
+}
+
+/* --- Caps Lock Warning (from test.scss) --- */
+#capsWarning {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 1rem;
+  background: var(--main-color);
+  color: var(--bg-color);
+  display: table; /* Allows centering with margin auto if positioned absolutely */
+  position: absolute; /* Or fixed, depending on desired behavior */
+  left: 50%;
+  top: 2rem; /* Example positioning */
+  transform: translateX(-50%);
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.25rem; /* Or var(--roundness) */
+  z-index: 999; /* Above other elements */
+  pointer-events: none; /* Just a warning, not interactive */
+  opacity: 0; /* Hidden by default, shown by JS */
+  transition: opacity 0.25s ease-in-out;
+}
+#capsWarning.visible { /* Class added by JS to show */
+  opacity: 1;
+}
+#capsWarning i { /* Icon within warning */
+  margin-right: 0.5em;
+}
+
+```

@@ -1,0 +1,183 @@
+/* ===== FILE: 04_buttons.css ===== */
+/* Description: Styles for standard and text buttons.
+   Assumes 00_theme_gruvbox_dark.css and 01_font_roboto_mono.css 
+   (or equivalent font setup) are active. */
+
+/* --- Base Button Styling (for .button class and button element) --- */
+.button,
+button {
+  display: inline-flex; /* Allows alignment of text and icons */
+  align-items: baseline; /* Aligns text and icon nicely */
+  justify-content: center; /* Centers content */
+  gap: 0.5em; /* Space between icon and text if both are present */
+  
+  font-family: 'Roboto Mono', monospace;
+  font-size: 1em; /* Inherits from parent or can be set explicitly */
+  line-height: 1.25; /* Consistent line height */
+  text-align: center;
+  text-decoration: none; /* For anchor tags styled as buttons */
+  
+  padding: 0.5em 1em; /* Vertical and horizontal padding */
+  border: none; /* Remove default border */
+  border-radius: 0.25rem; /* Or use a CSS variable e.g., var(--roundness) if defined in core_layout */
+  
+  cursor: pointer;
+  user-select: none; /* Prevent text selection on click */
+  transition: background-color 0.125s ease-in-out, color 0.125s ease-in-out, opacity 0.125s ease-in-out, box-shadow 0.125s ease-in-out;
+
+  /* Default button appearance */
+  background-color: var(--sub-alt-color);
+  color: var(--text-color);
+}
+
+/* States for .button and button element */
+.button:hover,
+button:hover {
+  background-color: var(--text-color); /* Using text color as hover background */
+  color: var(--bg-color); /* Reverse text color for contrast */
+}
+
+.button:active,
+button:active {
+  background-color: var(--sub-color); /* Darker shade for active state */
+  color: var(--bg-color);
+}
+
+.button:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--main-color);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--bg-color), 0 0 0 4px var(--main-color); /* Monkeytype like focus */
+}
+
+.button[disabled],
+button[disabled] {
+  opacity: 0.5; /* Muted appearance for disabled state */
+  pointer-events: none; /* No interactions */
+  background-color: var(--sub-alt-color); /* Keep background but muted */
+  color: var(--sub-color); /* Muted text */
+}
+
+/* --- Danger Button Styling --- */
+.button.danger,
+button.danger {
+  background-color: var(--error-color);
+  color: var(--bg-color); /* Text color that contrasts with error red */
+}
+
+.button.danger:hover,
+button.danger:hover {
+  background-color: var(--colorful-error-color); /* Slightly different shade on hover */
+  color: var(--bg-color);
+}
+
+.button.danger:active,
+button.danger:active {
+  background-color: var(--error-extra-color); /* Darker shade for active */
+  color: var(--bg-color);
+}
+
+/* --- Active/Toggled Button Styling (e.g., for mode switches) --- */
+.button.active, /* Class to indicate a button is 'on' or 'selected' */
+button.active {
+  background-color: var(--main-color);
+  color: var(--bg-color); /* Text color that contrasts with main color */
+}
+
+.button.active:hover,
+button.active:hover {
+  background-color: var(--caret-color); /* Brighter or alternative main color on hover */
+  color: var(--bg-color);
+}
+
+/* --- Text Button Styling (for .text-button class) --- */
+.text-button {
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.5em;
+
+  font-family: 'Roboto Mono', monospace;
+  font-size: 1em;
+  line-height: 1.25;
+  text-align: center;
+  text-decoration: none;
+  
+  padding: 0.5em 0.5em; /* Less horizontal padding than standard buttons */
+  border: none;
+  border-radius: 0.25rem; /* Or var(--roundness) */
+  background-color: transparent; /* No background */
+  
+  color: var(--sub-color); /* Muted color by default */
+  
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.125s ease-in-out, color 0.125s ease-in-out, opacity 0.125s ease-in-out, box-shadow 0.125s ease-in-out;
+}
+
+/* States for .text-button */
+.text-button:hover,
+.text-button:focus {
+  color: var(--text-color);
+  background-color: transparent; /* Still no background */
+}
+
+.text-button:active {
+  color: var(--sub-color); /* Can revert or use a pressed effect */
+  background-color: var(--sub-alt-color); /* Slight background on press */
+}
+
+.text-button:focus-visible {
+  outline: none; /* Remove default outline */
+  box-shadow: 0 0 0 2px var(--bg-color), 0 0 0 4px var(--text-color); /* Focus on text color */
+}
+
+.text-button[disabled],
+.text-button.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  color: var(--sub-color); /* Ensure color remains muted */
+}
+
+/* Danger Text Button */
+.text-button.danger {
+  color: var(--error-color);
+}
+.text-button.danger:hover,
+.text-button.danger:focus {
+  color: var(--colorful-error-color); /* Brighter error on hover */
+}
+
+/* Active/Toggled Text Button */
+.text-button.active {
+  color: var(--main-color);
+  /* background-color: var(--sub-alt-color); /* Optional: slight bg when active */
+}
+.text-button.active:hover,
+.text-button.active:focus {
+  color: var(--caret-color); /* Brighter main color on hover */
+}
+
+/* --- Utility Button Styles (examples from Monkeytype) --- */
+.button.fullWidth,
+.text-button.fullWidth {
+  width: 100%;
+  display: flex; /* Ensure it behaves like a block for full width */
+}
+
+.button.circle,
+.text-button.circle {
+  border-radius: 50%; /* For circular icon buttons */
+  padding: 0.5em; /* Adjust padding for circle buttons to be equal */
+  width: 2.25em; /* Example fixed size for circle buttons */
+  height: 2.25em;
+  line-height: 1.25em; /* Center icon if text is used */
+}
+
+/* Icon styling within buttons (assumes Font Awesome or similar) */
+.button .fas, .button .far, .button .fab,
+.text-button .fas, .text-button .far, .text-button .fab {
+  /* line-height: 1; /* Ensure icon aligns well if it has its own line height */
+  /* Icons usually inherit color, no specific styling needed unless overriding */
+  pointer-events: none; /* So icon doesn't interfere with button events */
+}

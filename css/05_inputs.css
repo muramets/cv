@@ -1,0 +1,220 @@
+/* ===== FILE: 05_inputs.css ===== */
+/* Description: Styles for form inputs like text fields, textareas, checkboxes, and selects.
+   Assumes 00_theme_gruvbox_dark.css and 01_font_roboto_mono.css 
+   (or equivalent font setup) are active. */
+
+/* --- General Styling for Text Inputs and Textareas --- */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="url"],
+input[type="tel"],
+textarea {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 1em;
+  color: var(--text-color);
+  background-color: var(--sub-alt-color);
+  padding: 0.5em 0.75em; /* Slightly more horizontal padding */
+  border: 1px solid var(--sub-color); /* Subtle border, can be var(--sub-alt-color) for borderless look */
+  border-radius: 0.25rem; /* Or var(--roundness) */
+  line-height: 1.25;
+  caret-color: var(--main-color); /* Caret color */
+  transition: border-color 0.125s ease-in-out, box-shadow 0.125s ease-in-out;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+input[type="url"]:focus,
+input[type="tel"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--main-color); /* Highlight border on focus */
+  box-shadow: 0 0 0 2px var(--bg-color), 0 0 0 4px var(--main-color); /* Monkeytype like focus */
+}
+
+input[type="text"]::placeholder,
+textarea::placeholder {
+  color: var(--sub-color);
+  opacity: 0.7;
+}
+
+input:disabled,
+textarea:disabled {
+  background-color: var(--sub-alt-color); /* Keep it dark but indicate disabled */
+  color: var(--sub-color);
+  opacity: 0.6;
+  pointer-events: none;
+  border-color: var(--sub-color);
+}
+
+textarea {
+  resize: vertical; /* Allow vertical resize, disable horizontal */
+  min-height: 80px; /* Sensible minimum height */
+}
+
+/* --- Checkbox Styling --- */
+label.checkbox-container { /* A wrapper for the checkbox and its label text */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  cursor: pointer;
+  user-select: none;
+  color: var(--text-color);
+  font-family: 'Roboto Mono', monospace;
+}
+
+input[type="checkbox"] {
+  appearance: none; /* Remove default appearance */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  
+  width: 1.25em;
+  height: 1.25em;
+  background-color: var(--sub-alt-color);
+  border: 1px solid var(--sub-color);
+  border-radius: 0.15rem; /* Slightly less roundness than buttons */
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.125s ease-in-out, border-color 0.125s ease-in-out;
+  flex-shrink: 0; /* Prevent shrinking in flex containers */
+}
+
+input[type="checkbox"]:checked {
+  background-color: var(--main-color);
+  border-color: var(--main-color);
+}
+
+/* Checkmark using ::after pseudo-element */
+input[type="checkbox"]::after {
+  content: '\f00c'; /* Font Awesome check icon (ensure Font Awesome is available) */
+  font-family: "Font Awesome 5 Free", "Font Awesome 6 Free", "Font Awesome 5 Pro", "Font Awesome 6 Pro"; /* Adjust as per your FA version */
+  font-weight: 900; /* Solid check */
+  font-size: 0.85em;
+  color: var(--bg-color); /* Color of the checkmark */
+  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0; /* Hidden by default */
+  transition: opacity 0.1s ease-in-out;
+}
+
+input[type="checkbox"]:checked::after {
+  opacity: 1; /* Show checkmark when checked */
+}
+
+input[type="checkbox"]:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--bg-color), 0 0 0 4px var(--main-color);
+}
+
+input[type="checkbox"]:disabled {
+  background-color: var(--sub-alt-color);
+  border-color: var(--sub-color);
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+input[type="checkbox"]:disabled::after {
+  color: var(--sub-color); /* Muted checkmark for disabled checked state */
+}
+label.checkbox-container:has(input[type="checkbox"]:disabled) {
+  color: var(--sub-color);
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+
+/* --- Select/Dropdown Styling (Basic, can be enhanced with custom libraries) --- */
+select {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 1em;
+  color: var(--text-color);
+  background-color: var(--sub-alt-color);
+  padding: 0.5em 2em 0.5em 0.75em; /* Space for arrow */
+  border: 1px solid var(--sub-color);
+  border-radius: 0.25rem; /* Or var(--roundness) */
+  line-height: 1.25;
+  appearance: none; /* Remove default arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  
+  /* Custom arrow using background SVG or pseudo-element */
+  /* background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23${(props) => props.theme.textColor.replace('#', '')}'%3E%3Cpath d='M8 12l-6-6h12z'/%3E%3C/svg%3E"); /* Needs theme color interpolation if used directly */
+  /* For a static color arrow (using sub-color #665c54): */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23665c54'%3E%3Cpath d='M8 12l-6-6h12z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5em center;
+  background-size: 0.8em;
+  transition: border-color 0.125s ease-in-out, box-shadow 0.125s ease-in-out;
+}
+
+select:focus {
+  outline: none;
+  border-color: var(--main-color);
+  box-shadow: 0 0 0 2px var(--bg-color), 0 0 0 4px var(--main-color);
+}
+
+select:disabled {
+  background-color: var(--sub-alt-color);
+  color: var(--sub-color);
+  opacity: 0.6;
+  border-color: var(--sub-color);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23444444'%3E%3Cpath d='M8 12l-6-6h12z'/%3E%3C/svg%3E"); /* Darker arrow for disabled */
+}
+
+/* Note: Styling options for <option> elements within a <select> is very limited across browsers.
+   For fully custom dropdowns, JavaScript libraries are often used (like slim-select in Monkeytype).
+   This CSS provides a basic consistent look for native select elements. */
+
+/* --- Input Range Styling (Basic) --- */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 0.5em; /* Height of the track */
+  background: var(--sub-alt-color);
+  border-radius: 0.25rem; /* Or var(--roundness) */
+  outline: none;
+  opacity: 0.9;
+  transition: opacity .15s ease-in-out;
+  border: 1px solid var(--sub-color);
+}
+
+input[type="range"]:hover {
+  opacity: 1;
+}
+
+/* Thumb styling for WebKit (Chrome, Safari, Edge) */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1.25em; /* Width of the thumb */
+  height: 1.25em; /* Height of the thumb */
+  background: var(--main-color);
+  border-radius: 50%; /* Circular thumb */
+  cursor: pointer;
+  border: 2px solid var(--sub-alt-color); /* Border to make it pop from track */
+}
+
+/* Thumb styling for Firefox */
+input[type="range"]::-moz-range-thumb {
+  width: 1.25em;
+  height: 1.25em;
+  background: var(--main-color);
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid var(--sub-alt-color);
+}
+
+input[type="range"]:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 3px var(--bg-color), 0 0 0 5px var(--main-color);
+}
+input[type="range"]:focus-visible::-moz-range-thumb {
+  box-shadow: 0 0 0 3px var(--bg-color), 0 0 0 5px var(--main-color);
+}
