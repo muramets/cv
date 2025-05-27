@@ -418,7 +418,7 @@ p.text {
 
 .skill-category {
   background-color: var(--hover-color);
-  padding: 1.5rem;
+  padding: 1rem;
   border-radius: 0.5rem;
   border: 1px solid var(--border-color);
 }
