@@ -1,0 +1,58 @@
+{
+  "name": "ilya-blinov-resume",
+  "version": "1.0.0",
+  "description": "Interactive resume website built in Monkeytype style",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve . -p 8000",
+    "dev": "npx live-server --port=8000 --open=/",
+    "build": "echo 'No build process required for static site'",
+    "deploy": "gh-pages -d .",
+    "lint:css": "npx stylelint css/*.css",
+    "lint:js": "npx eslint js/*.js",
+    "format": "npx prettier --write ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/resume.git"
+  },
+  "keywords": [
+    "resume",
+    "cv",
+    "portfolio",
+    "monkeytype",
+    "gruvbox",
+    "interactive",
+    "responsive",
+    "web-development"
+  ],
+  "author": {
+    "name": "Ilya Blinov",
+    "email": "murametsoo7@gmail.com",
+    "url": "https://linkedin.com/in/iliablinov"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yourusername/resume/issues"
+  },
+  "homepage": "https://yourusername.github.io/resume",
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "gh-pages": "^4.0.0",
+    "live-server": "^1.2.2",
+    "prettier": "^2.8.0",
+    "serve": "^14.0.0",
+    "stylelint": "^15.0.0",
+    "stylelint-config-standard": "^30.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ],
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  }
+}
