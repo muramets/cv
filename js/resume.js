@@ -5,9 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize collapsible sections
     initCollapsibleSections();
     
-    // Initialize theme toggle
-    initThemeToggle();
-    
     // Initialize smooth scrolling
     initSmoothScrolling();
     
@@ -87,58 +84,6 @@ function addClickFeedback(element) {
     }, 100);
 }
 
-function initThemeToggle() {
-    const themeToggle = document.getElementById('themeToggle');
-    if (!themeToggle) return;
-    
-    // Available themes (could be extended)
-    const themes = [
-        { name: 'gruvbox-dark', displayName: 'Gruvbox Dark' },
-        { name: 'monkeytype-default', displayName: 'Monkeytype' },
-        { name: 'high-contrast', displayName: 'High Contrast' }
-    ];
-    
-    let currentThemeIndex = 0;
-    
-    // Load saved theme or default
-    const savedTheme = localStorage.getItem('resume-theme') || 'gruvbox-dark';
-    const savedIndex = themes.findIndex(theme => theme.name === savedTheme);
-    if (savedIndex !== -1) {
-        currentThemeIndex = savedIndex;
-    }
-    
-    // Apply theme (for now just cycle through class names on body)
-    function applyTheme(themeIndex) {
-        const theme = themes[themeIndex];
-        document.body.className = theme.name;
-        localStorage.setItem('resume-theme', theme.name);
-        
-        // Update button text
-        const themeText = themeToggle.querySelector('.theme-name');
-        if (themeText) {
-            themeText.textContent = theme.displayName;
-        }
-    }
-    
-    // Add theme name display
-    const themeNameSpan = document.createElement('span');
-    themeNameSpan.className = 'theme-name';
-    themeToggle.appendChild(themeNameSpan);
-    
-    // Apply initial theme
-    applyTheme(currentThemeIndex);
-    
-    // Toggle theme on click
-    themeToggle.addEventListener('click', function(e) {
-        e.preventDefault();
-        currentThemeIndex = (currentThemeIndex + 1) % themes.length;
-        applyTheme(currentThemeIndex);
-        
-        // Add visual feedback
-        addClickFeedback(themeToggle);
-    });
-}
-
 function initSmoothScrolling() {
     // Smooth scrolling for navigation links
     const navLinks = document.querySelectorAll('a[href^="#"]');
@@ -178,13 +123,6 @@ function initKeyboardShortcuts() {
             case 'm':
                 // Toggle Motivation
                 toggleSection('motivation');
-                break;
-            case 't':
-                // Toggle theme
-                if (e.ctrlKey || e.metaKey) {
-                    e.preventDefault();
-                    document.getElementById('themeToggle')?.click();
-                }
                 break;
             case 'h':
                 // Show help
@@ -230,7 +168,6 @@ function showKeyboardHelp() {
                     </div>
                     <div class="shortcut-group">
                         <h4>Interface</h4>
-                        <div class="shortcut"><kbd>Ctrl</kbd> + <kbd>T</kbd> Change Theme</div>
                         <div class="shortcut"><kbd>H</kbd> Show/Hide Help</div>
                         <div class="shortcut"><kbd>Esc</kbd> Close Help</div>
                     </div>
