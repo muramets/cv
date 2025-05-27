@@ -429,7 +429,7 @@ p.text {
   gap: 0.5rem;
   font-size: 1rem;
   color: var(--main-color);
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   border-bottom: 1px solid var(--border-color);
   padding-bottom: 0.5rem;
   font-weight: 400;
@@ -448,6 +448,10 @@ p.text {
   line-height: 1.5;
   color: var(--text-color);
   font-size: 0.9rem;
+}
+
+.skill-category li:last-child {
+  margin-bottom: 0;
 }
 
 .skill-category li::before {
