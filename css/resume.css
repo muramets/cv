@@ -140,8 +140,15 @@
   color: var(--main-color);
 }
 
-.contact-item span {
-  color: #646669;
+/* Стили для обычного текста в контактах (телефон, местоположение) */
+.contact-item > span:last-child {
+  color: #646669 !important;
+  transition: color 0.125s ease !important;
+  cursor: default;
+}
+
+.contact-item > span:last-child:hover {
+  color: var(--main-color) !important;
 }
 
 /* --- Section Groups (Monkeytype Settings Style) --- */
