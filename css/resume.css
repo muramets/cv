@@ -198,8 +198,7 @@
   color: inherit; /* Наследует цвет от заголовка */
 }
 
-.sectionGroupTitle span,
-.sectionGroupTitle > *:not(i) {
+.sectionGroupTitle span {
   order: 2; /* Текст посередине */
 }
 
