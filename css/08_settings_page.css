@@ -1,114 +1,76 @@
 /* ===== FILE: 08_settings_page.css ===== */
-/* Description: Styles for the settings page layout and components.
-   Assumes 00_theme_gruvbox_dark.css, 01_font_roboto_mono.css, 
-   and other relevant CSS files (buttons, inputs) are active. */
+/* Description: Settings page layout and components matching Monkeytype */
 
 /* --- Settings Page Container --- */
 .pageSettings {
   font-family: 'Roboto Mono', monospace;
   color: var(--text-color);
-  /* .content-grid class from core_layout.css can be used for centering this page */
-  display: grid; /* If .pageSettings is the content-grid itself */
-  grid-column: content; /* If .pageSettings is a child of a .content-grid */
-  gap: 2.5rem; /* Increased gap between major groups */
-  padding: 1rem 0; /* Vertical padding for the page */
+  display: grid;
+  gap: 1rem;
+  padding: 1rem 0;
 }
 
-/* --- Quick Navigation (if used) --- */
-.settingsGroup.quickNav {
-  justify-content: center; /* Centers the links container */
-  margin-bottom: 2rem;
+/* --- Settings Group --- */
+.settingsGroup {
+  margin-bottom: 1rem;
 }
 
-.settingsGroup.quickNav .links {
-  font-size: 0.8rem; /* Smaller font for quick nav */
-  background-color: var(--sub-alt-color);
-  border-radius: 0.25rem; /* Or var(--roundness) */
-  max-width: fit-content;
-  display: flex;
-  flex-wrap: wrap;
-  text-align: center;
-  border: 1px solid var(--sub-color); /* Subtle border */
-}
-
-.settingsGroup.quickNav .links a.text-button { /* Assuming .text-button style is defined */
-  padding: 0.75em 1.5em; /* Generous padding for clickable area */
-  color: var(--sub-color);
-  text-decoration: none;
-  flex-grow: 1;
-  border-radius: 0; /* No individual radius if part of a bar */
-}
-
-.settingsGroup.quickNav .links a.text-button:not(:last-child) {
-  border-right: 1px solid var(--sub-color); /* Separator */
-}
-
-.settingsGroup.quickNav .links a.text-button:hover {
-  color: var(--text-color);
-  background-color: var(--bg-color); /* Darker hover for contrast */
-}
-
-.settingsGroup.quickNav .links a.text-button .fas { /* Icon styling */
-  margin-right: 0.5em;
-}
-
-
-/* --- Tip / Notice Styling --- */
-.pageSettings .tip {
-  color: var(--sub-color);
-  text-align: center;
-  font-size: 0.9rem;
-  padding: 1rem;
-  background-color: var(--sub-alt-color);
-  border-radius: 0.25rem; /* Or var(--roundness) */
-  margin-bottom: 1.5rem;
-}
-.pageSettings .tip key, .pageSettings .tip kbd { /* Copied from footer_styles for consistency */
-  font-family: 'Roboto Mono', monospace;
-  background-color: var(--bg-color); /* Slightly different from footer for contrast */
-  color: var(--text-color);
-  padding: 0.1em 0.4em;
-  margin: 0 0.25rem;
-  border-radius: 0.15rem;
-  border: 1px solid var(--sub-color);
-  font-size: 0.9em;
-}
-
-
-/* --- Section Group Title (e.g., "behavior", "input") --- */
+/* --- Section Group Title --- */
 .sectionGroupTitle {
   font-family: 'Roboto Mono', monospace;
-  font-size: 1.8rem; /* Prominent size */
-  color: var(--main-color); /* Use main color for these titles */
-  margin-bottom: 0.5rem; /* Space below title before group starts */
-  padding: 0.25em 0;
+  font-size: 1.25rem;
+  color: var(--sub-color);
+  margin-bottom: 0.5rem;
+  padding: 1rem 1.5rem;
   border: none;
   background: none;
-  cursor: pointer; /* If they are clickable/collapsible */
+  cursor: pointer;
   text-align: left;
-  width: 100%; /* Make it full width for easier clicking */
+  width: 100%;
   display: flex;
   align-items: center;
-  gap: 0.5em;
+  gap: 1rem;
+  transition: all 0.125s ease-in-out;
+  border-radius: 0.5rem;
 }
 
-.sectionGroupTitle .fas { /* Chevron icon */
+.sectionGroupTitle:hover {
+  color: var(--text-color);
+  background-color: var(--hover-color);
+}
+
+.sectionGroupTitle.expanded {
+  background-color: var(--main-color);
+  color: var(--bg-color);
+}
+
+.sectionGroupTitle .fas {
   transition: transform 0.25s ease-in-out;
-  font-size: 0.8em; /* Relative to title font size */
-  color: var(--sub-color);
+  font-size: 0.8em;
+  color: inherit;
+  width: 1rem;
+  text-align: center;
 }
 
-.sectionGroupTitle.rotateIcon .fas { /* For collapsible sections */
-  transform: rotate(-90deg);
+.sectionGroupTitle.expanded .fas {
+  transform: rotate(90deg);
 }
 
-/* --- Settings Group (container for multiple sections) --- */
-.settingsGroup {
-  display: grid;
-  gap: 2rem; /* Space between sections within a group */
-  padding-left: 1.5rem; /* Indent sections under a group title */
-  border-left: 2px solid var(--sub-alt-color); /* Visual grouping */
-  margin-bottom: 2rem; /* Space after a whole group */
+/* --- Settings Content --- */
+.settings-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease, opacity 0.2s ease;
+  opacity: 0;
+  background-color: var(--sub-alt-color);
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.settings-content.expanded {
+  max-height: 5000px;
+  opacity: 1;
+  padding: 1.5rem;
 }
 
 /* --- Individual Setting Section --- */
@@ -117,193 +79,225 @@
   grid-template-areas:
     "title buttons"
     "text  buttons";
-  grid-template-columns: 2fr 1fr; /* Title/text take more space than controls */
-  grid-template-rows: auto 1fr; /* Title auto, text takes remaining */
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: auto 1fr;
   column-gap: 2rem;
   row-gap: 0.5rem;
-  align-items: center; /* Vertically align items in each row */
-  padding: 1rem 0; /* Padding for each setting item */
-  border-bottom: 1px solid var(--sub-alt-color); /* Separator line */
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border-color);
 }
+
 .section:last-child {
   border-bottom: none;
 }
 
-.section .groupTitle { /* Title of the setting, e.g., "test difficulty" */
+.section .groupTitle {
   grid-area: title;
   font-family: 'Roboto Mono', monospace;
   font-size: 1.1rem;
   color: var(--text-color);
-  font-weight: 400; /* Regular weight */
+  font-weight: 400;
   display: flex;
   align-items: baseline;
+  margin: 0;
 }
 
-.section .groupTitle .fas, /* Icon next to setting title */
+.section .groupTitle .fas,
 .section .groupTitle .far,
-.section .groupTitle .fab,
-.section .groupTitle .textIcon {
+.section .groupTitle .fab {
   margin-right: 0.75em;
-  color: var(--sub-color); /* Icon color */
-  width: 1.2em; /* Fixed width for alignment */
+  color: var(--main-color);
+  width: 1.2em;
   text-align: center;
 }
 
-.section p, /* Description text for the setting */
-.section .text { /* Alternative class for description if not <p> */
+.section p,
+.section .text {
   grid-area: text;
   font-family: 'Roboto Mono', monospace;
   font-size: 0.9rem;
-  color: var(--sub-color); /* Muted color for description */
+  color: var(--sub-color);
   margin: 0;
   line-height: 1.5;
 }
 
-.section .inputs, /* Container for input controls */
-.section .buttons { /* Container for button controls */
+.section .inputs,
+.section .buttons {
   grid-area: buttons;
   display: grid;
-  /* Default to single column, can be overridden for multiple buttons/inputs */
-  grid-template-columns: 1fr; 
-  gap: 0.75rem; /* Gap between multiple controls if they stack */
-  align-items: center; /* Align controls if they have different heights */
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  align-items: center;
 }
 
-/* Layout for multiple buttons in a row (common in settings) */
+/* --- Button Groups --- */
 .section .buttons.horizontal {
-  grid-template-columns: repeat(auto-fit, minmax(min-content, 1fr)); /* Distribute space */
-  /* minmax should be wide enough for typical button text, e.g., 6rem or 8rem */
-  /* grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr)); */
+  grid-template-columns: repeat(auto-fit, minmax(min-content, 1fr));
   gap: 0.5rem;
 }
 
-
-/* Specific layout for an input field next to a save button */
+/* --- Input and Button Combinations --- */
 .section .inputAndButton {
   display: grid;
-  grid-template-columns: 1fr auto; /* Input takes space, button is fixed size */
+  grid-template-columns: 1fr auto;
   gap: 0.5rem;
   align-items: center;
 }
-.section .inputAndButton input { /* Assumes input styles from 05_inputs.css */
+
+.section .inputAndButton input {
   width: 100%;
 }
-.section .inputAndButton .button { /* Assumes button styles from 04_buttons.css */
-  height: auto; /* Match input height */
-  padding: 0.5em; /* Adjust if needed for icon buttons */
-}
-.section .inputAndButton .button .fas {
-  margin-right: 0; /* No margin if it's just an icon */
+
+.section .inputAndButton .button {
+  height: auto;
+  padding: 0.5em;
 }
 
-
-/* Styles for range input groups */
+/* --- Range Groups --- */
 .section .rangeGroup {
   display: grid;
-  grid-template-columns: auto 1fr; /* Label/value, then range input */
+  grid-template-columns: auto 1fr;
   gap: 1rem;
   align-items: center;
   color: var(--text-color);
 }
-.section .rangeGroup .value { /* To display current range value */
+
+.section .rangeGroup .value {
   font-size: 0.9em;
-  min-width: 2.5em; /* Ensure space for 3 digits e.g. 100 */
+  min-width: 2.5em;
   text-align: right;
 }
-.section .rangeGroup input[type="range"] { /* Uses styles from 05_inputs.css */
+
+.section .rangeGroup input[type="range"] {
   width: 100%;
 }
 
-
-/* Styles for sections that are full-width (e.g., theme selection buttons) */
+/* --- Full Width Sections --- */
 .section.fullWidth {
-  grid-template-columns: 1fr; /* Title/text take full width initially */
+  grid-template-columns: 1fr;
   grid-template-areas:
     "title"
     "text"
-    "buttons"; /* Controls below text */
+    "buttons";
 }
+
 .section.fullWidth .groupTitle,
 .section.fullWidth p,
 .section.fullWidth .text {
-  grid-column: 1 / -1; /* Span all columns */
+  grid-column: 1 / -1;
 }
+
 .section.fullWidth .buttons {
-  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); /* For larger buttons like themes */
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
   gap: 0.75rem;
   margin-top: 0.5rem;
 }
 
-/* Settings for Tab containers (like in Theme selection) */
+/* --- Tab Containers --- */
 .section .tabs {
   display: flex;
   gap: 0.5rem;
   margin-bottom: 1rem;
-  grid-area: tabs; /* If used in a specific grid layout */
 }
-.section .tabs .button, /* Assuming tabs are styled as buttons */
+
+.section .tabs .button,
 .section .tabs .text-button {
   flex-grow: 1;
-  /* Add styles for active tab if not covered by .button.active */
-}
-.section .tabs .button.active,
-.section .tabs .text-button.active {
-  background-color: var(--main-color);
-  color: var(--bg-color);
-  /* Or a different visual indication */
-  /* border-bottom: 2px solid var(--main-color);
-     background-color: transparent;
-     color: var(--main-color); */
 }
 
 .tabContainer .tabContent {
   padding-top: 1rem;
-  border-top: 1px solid var(--sub-alt-color);
+  border-top: 1px solid var(--border-color);
 }
+
 .tabContainer .tabContent.hidden {
   display: none;
 }
 
-/* Danger Zone specific styling */
+/* --- Danger Zone Styling --- */
 .settingsGroup.dangerZone .section .groupTitle {
-  color: var(--error-color); /* Titles in danger zone are red */
+  color: var(--error-color);
 }
+
 .settingsGroup.dangerZone .section .groupTitle .fas {
-  color: var(--error-color); /* Icon color also red */
+  color: var(--error-color);
 }
+
 .settingsGroup.dangerZone .section p,
 .settingsGroup.dangerZone .section .text {
-  color: var(--error-extra-color); /* Description text is also colored for warning */
+  color: var(--error-extra-color);
 }
-.settingsGroup.dangerZone .section .text .red { /* For explicit red warnings */
+
+.settingsGroup.dangerZone .section .text .red {
   color: var(--error-color);
   font-weight: bold;
 }
 
-/* Account Settings Notice (if needed) */
+/* --- Account Settings Notice --- */
 .accountSettingsNotice {
   background-color: var(--sub-alt-color);
-  border-radius: 0.25rem; /* Or var(--roundness) */
-  border: 1px solid var(--sub-color);
+  border-radius: 0.5rem;
+  border: 1px solid var(--border-color);
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 1rem;
   padding: 1.5rem;
-  margin: 1rem 0; /* Spacing around notice */
+  margin: 1rem 0;
 }
+
 .accountSettingsNotice .icon {
   font-size: 2rem;
   color: var(--sub-color);
 }
+
 .accountSettingsNotice p {
   color: var(--text-color);
   font-size: 0.95rem;
   margin: 0;
 }
-/* .accountSettingsNotice button uses styles from 04_buttons.css */
 
-/* General spacer if used between sections */
-.sectionSpacer {
-  height: 1.5rem; /* Or any value for visual separation */
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+  .section {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "title"
+      "text"
+      "buttons";
+    gap: 1rem;
+  }
+  
+  .section .buttons {
+    grid-template-columns: 1fr;
+  }
+  
+  .section .buttons.horizontal {
+    grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  }
+  
+  .sectionGroupTitle {
+    font-size: 1.1rem;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pageSettings {
+    padding: 0.5rem 0;
+  }
+  
+  .settings-content.expanded {
+    padding: 1rem;
+  }
+  
+  .section {
+    padding: 0.75rem 0;
+  }
+  
+  .sectionGroupTitle {
+    font-size: 1rem;
+    padding: 0.75rem;
+  }
 }
