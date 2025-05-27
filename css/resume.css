@@ -131,13 +131,13 @@
 }
 
 .contact-item a {
-  color: var(--main-color);
+  color: #646669;
   text-decoration: none;
   transition: color 0.125s ease;
 }
 
 .contact-item a:hover {
-  color: var(--text-color);
+  color: var(--main-color);
 }
 
 .contact-item span {
