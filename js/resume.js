@@ -27,9 +27,14 @@ function initCollapsibleSections() {
         
         if (!targetContent) return;
         
-        // Set initial state (collapsed)
-        targetContent.classList.remove('expanded');
-        title.classList.remove('expanded');
+        // Check if section should be expanded by default
+        const isDefaultExpanded = title.classList.contains('expanded');
+        
+        if (!isDefaultExpanded) {
+            // Set initial state (collapsed)
+            targetContent.classList.remove('expanded');
+            title.classList.remove('expanded');
+        }
         
         // Add click event listener
         title.addEventListener('click', function() {
