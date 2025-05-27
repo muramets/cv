@@ -196,6 +196,8 @@
 .sectionGroupTitle i:not(.fa-chevron-down):not(.fa-chevron-right) {
   order: 3; /* Иконка секции после текста */
   color: inherit; /* Наследует цвет от заголовка */
+  transition: none !important; /* Отключаем все анимации */
+  transform: none !important; /* Отключаем трансформации */
 }
 
 .sectionGroupTitle span {
