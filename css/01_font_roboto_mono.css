@@ -1,24 +1,60 @@
 /* ===== FILE: 01_font_roboto_mono.css ===== */
-/* Description: Defines the @font-face for Roboto Mono Regular. */
+/* Description: Defines the Roboto Mono font for Monkeytype style */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;600;700&display=swap');
+
+/* Font face definition for local hosting (optional) */
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Roboto Mono'), local('RobotoMono-Regular'),
+       url('https://fonts.gstatic.com/s/robotomono/v22/L0x5DF4xlVMF-BfR8bXMIjhLq38.woff2') format('woff2');
+}
 
 @font-face {
   font-family: 'Roboto Mono';
   font-style: normal;
-  font-weight: 400; /* Corresponds to Regular/Normal */
-  font-display: block; /* Or 'swap' depending on preference for FOIT vs FOUT */
-  src: url('../webfonts/RobotoMono-Regular.woff2') format('woff2');
-  /* 
-    Note: This path assumes that when these styles are used,
-    there is a 'webfonts' directory one level above the location of this CSS file,
-    and it contains 'RobotoMono-Regular.woff2'.
-    Adjust the path if your font files are located elsewhere in your project.
-    If you are using a system-installed 'Roboto Mono' or importing via a CDN,
-    you might not need this @font-face rule, or it would need to be adjusted.
-  */
+  font-weight: 300;
+  font-display: swap;
+  src: local('Roboto Mono Light'), local('RobotoMono-Light'),
+       url('https://fonts.gstatic.com/s/robotomono/v22/L0x5DF4xlVMF-BfR8bXMIjhOqXs.woff2') format('woff2');
 }
 
-/* Example of how to use it (this would typically be in a global or typography CSS file):
-body {
-  font-family: 'Roboto Mono', monospace; /* Fallback to generic monospace */
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: local('Roboto Mono Medium'), local('RobotoMono-Medium'),
+       url('https://fonts.gstatic.com/s/robotomono/v22/L0x5DF4xlVMF-BfR8bXMIjhEqXs.woff2') format('woff2');
 }
-*/
+
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Roboto Mono SemiBold'), local('RobotoMono-SemiBold'),
+       url('https://fonts.gstatic.com/s/robotomono/v22/L0x5DF4xlVMF-BfR8bXMIjhYq3s.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Roboto Mono Bold'), local('RobotoMono-Bold'),
+       url('https://fonts.gstatic.com/s/robotomono/v22/L0x5DF4xlVMF-BfR8bXMIjhFq3s.woff2') format('woff2');
+}
+
+/* Global font application */
+body, html {
+  font-family: 'Roboto Mono', monospace;
+}
+
+/* Ensure monospace characteristics */
+pre, code, kbd, samp {
+  font-family: 'Roboto Mono', monospace;
+}
