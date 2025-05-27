@@ -1,7 +1,28 @@
 /* ===== FILE: resume.css ===== */
 /* Description: Resume styles matching Monkeytype exactly */
 
-/* --- Header Styles (Monkeytype style) --- */
+/* --- Content Centering (Updated width) --- */
+.content-wrapper {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
+  flex: 1;
+}
+
+/* --- Header Content Centering --- */
+.header-content {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 4rem;
+}
+
+/* --- Logo and Header Styles --- */
 .logo-container a {
   display: flex;
   align-items: center;
@@ -27,11 +48,6 @@
   color: var(--text-color);
 }
 
-.nav-item i {
-  color: var(--main-color);
-  font-size: 0.9rem;
-}
-
 /* --- Hero Section --- */
 .hero-section {
   padding: 3rem 0;
@@ -41,7 +57,7 @@
 
 .hero-typing-container {
   position: relative;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -70,6 +86,15 @@
   font-weight: 400;
   line-height: 1.2;
   white-space: nowrap;
+}
+
+.hero-subtitle {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 1.2rem;
+  color: var(--text-color);
+  margin-bottom: 1rem;
+  line-height: 1.3;
+  text-align: center;
 }
 
 .hero-tagline {
@@ -237,6 +262,72 @@
   margin-bottom: 1.2rem;
   color: var(--text-color);
   width: 100%;
+}
+
+.content-text p:last-child {
+  margin-bottom: 0;
+}
+
+/* --- Subsections --- */
+.subsection {
+  margin-left: 0;
+  margin-bottom: 1rem;
+  border: none;
+  padding: 0;
+  width: 100%;
+}
+
+.subsection-title {
+  font-size: 1.1rem !important;
+  color: var(--sub-color) !important;
+  padding: 0.75rem 1.5rem !important;
+}
+
+.subsection-title:hover {
+  color: var(--text-color) !important;
+}
+
+.subsection-title.expanded {
+  background-color: var(--text-color) !important;
+  color: var(--bg-color) !important;
+}
+
+.subsection-title.expanded:hover {
+  background-color: var(--text-color) !important;
+  color: var(--bg-color) !important;
+}
+
+.groupTitle {
+  font-size: 1.1rem;
+  color: var(--text-color);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 400;
+}
+
+.groupTitle i {
+  color: var(--main-color);
+  width: 1.2rem;
+  text-align: center;
+}
+
+.company-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.company {
+  font-weight: 400;
+  color: var(--text-color);
+}
+
+.period {
+  color: var(--sub-color);
 }
 
 /* --- Achievements Section --- */
@@ -422,8 +513,12 @@
     font-size: 1.25rem;
   }
   
-  .hero-tagline {
+  .hero-subtitle {
     font-size: 1.1rem;
+  }
+  
+  .hero-tagline {
+    font-size: 0.9rem;
   }
   
   .contact-info {
@@ -472,8 +567,12 @@
     font-size: 1rem;
   }
   
-  .hero-tagline {
+  .hero-subtitle {
     font-size: 1rem;
+  }
+  
+  .hero-tagline {
+    font-size: 0.9rem;
   }
   
   .contact-info {
