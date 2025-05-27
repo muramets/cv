@@ -1,6 +1,14 @@
-# 🚀 Quick Start Guide
+# 🚀 Quick Start Guide - Updated Version
 
-Get your resume website up and running in 5 minutes!
+Get your resume website up and running in 5 minutes with **exact Monkeytype styling**!
+
+## ✨ What's New in This Version
+
+- **🎨 Exact Monkeytype Colors**: Pixel-perfect color matching from screenshots
+- **📐 Centered Layout**: Content properly centered with empty sides like Monkeytype
+- **🔤 Matching Typography**: Same fonts, sizes, and spacing as Monkeytype
+- **📱 Perfect Section Headers**: Exact replica of Monkeytype settings sections
+- **⚡ Improved Responsiveness**: Better mobile experience
 
 ## Method 1: GitHub Pages (Recommended)
 
@@ -16,16 +24,16 @@ Create this folder structure in your repository:
 resume/
 ├── index.html
 ├── css/
-│   ├── 00_theme_gruvbox_dark.css
+│   ├── 00_theme_monkeytype.css     ← NEW: Updated with exact Monkeytype colors
 │   ├── 01_font_roboto_mono.css
-│   ├── 02_core_layout.css
+│   ├── 02_core_layout.css          ← UPDATED: Simplified center layout
 │   ├── 03_typography.css
 │   ├── 04_buttons.css
 │   ├── 05_inputs.css
-│   ├── 06_navigation.css
+│   ├── 06_navigation.css           ← UPDATED: Monkeytype header style
 │   ├── 07_footer_styles.css
 │   ├── 08_settings_page.css
-│   └── resume.css
+│   └── resume.css                  ← COMPLETELY REWRITTEN: Exact Monkeytype styling
 ├── js/
 │   └── resume.js
 ├── package.json
@@ -89,28 +97,31 @@ python -m http.server 8000
 
 ## 🎨 Quick Theme Customization
 
-### Change Main Color
-In `css/00_theme_gruvbox_dark.css`:
+### Exact Monkeytype Colors (Already Applied)
+In `css/00_theme_monkeytype.css`:
 ```css
 :root {
-  --main-color: #your-color; /* Default: #d79921 */
-  --caret-color: #your-caret-color; /* Default: #fabd2f */
+  --bg-color: #323437;        /* Dark background */
+  --text-color: #d1d0c5;      /* Light text */
+  --main-color: #e2b714;      /* Yellow accent */
+  --sub-color: #646669;       /* Muted text */
+  --hover-color: #3c3e41;     /* Hover backgrounds */
 }
 ```
 
-### Popular Color Schemes
+### Alternative Color Schemes
 ```css
-/* Blue Theme */
---main-color: #83a598;
---caret-color: #8ec07c;
+/* Monkeytype Blue Variant */
+--main-color: #7fb3d3;
+--caret-color: #7fb3d3;
 
-/* Purple Theme */
---main-color: #d3869b;
---caret-color: #b16286;
+/* Monkeytype Purple Variant */
+--main-color: #c792ea;
+--caret-color: #c792ea;
 
-/* Red Theme */
---main-color: #fb4934;
---caret-color: #cc241d;
+/* Monkeytype Green Variant */
+--main-color: #98c379;
+--caret-color: #98c379;
 ```
 
 ## 🔧 Troubleshooting
