@@ -39,7 +39,7 @@ body {
 
 /* --- Content Centering (Monkeytype style) --- */
 .content-wrapper {
-  max-width: 1200px;
+  max-width: 1000px;
   width: 100%;
   margin: 0 auto;
   padding: 0 2rem;
@@ -48,19 +48,19 @@ body {
 
 /* --- Header Content Centering --- */
 .header-content {
-  max-width: 1200px;
+  max-width: 1000px;
   width: 100%;
   margin: 0 auto;
   padding: 0 2rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   height: 4rem;
 }
 
 /* --- Content Grid (simplified for Monkeytype style) --- */
 .content-grid {
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 0 2rem;
 }
@@ -89,7 +89,7 @@ body {
 }
 
 .footer-content {
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 0 2rem;
 }
