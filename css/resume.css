@@ -392,8 +392,13 @@ p.text {
   border-left: 3px solid var(--main-color);
   margin: 1.5rem 0;
   line-height: 1.6;
-  color: var(--text-color);
+  color: var(--text-color) !important;
   font-size: 0.95rem;
+}
+
+.insight p {
+  color: var(--text-color) !important;
+  margin: 0;
 }
 
 /* --- Skills Grid --- */
