@@ -1,57 +1,64 @@
 /* ===== FILE: 07_footer_styles.css ===== */
-/* Description: Styles for the site footer.
-   Assumes 00_theme_gruvbox_dark.css and 01_font_roboto_mono.css 
-   (or equivalent font setup) are active. Button styles might also be relevant. */
+/* Description: Footer styles matching Monkeytype design */
 
-/* --- Site Footer (from 02_core_layout.css, refined here for footer specifics) --- */
-/* .site-footer might be defined in core_layout.css; this adds specific content styling.
-   It assumes a structure like:
-   <footer class="site-footer">
-     <div class="footer-content content-grid"> <!-- Optional: use content-grid for alignment -->
-        <div class="footer-column footer-left">...</div>
-        <div class="footer-column footer-center">...</div>
-        <div class="footer-column footer-right">...</div>
-     </div>
-   </footer>
-*/
-
+/* --- Site Footer --- */
 .site-footer {
-  /* Basic layout from core_layout.css:
+  font-family: 'Roboto Mono', monospace;
+  border-top: 1px solid var(--border-color);
+  padding: 2rem 0;
   text-align: center;
-  padding: 1rem 0; 
-  font-size: 0.75rem; 
-  color: var(--sub-color); 
-  display: grid; (optional, for multi-column footers)
-  */
+  background-color: var(--bg-color);
+  margin-top: auto;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  line-height: 1.4;
+}
+
+/* --- Footer Text --- */
+.site-footer p {
+  color: var(--sub-color);
+  font-size: 0.85rem;
   font-family: 'Roboto Mono', monospace;
-  line-height: 1.4; /* Slightly more line height for smaller footer text */
-  padding-top: 2rem; /* More padding for footer */
-  padding-bottom: 2rem;
-  border-top: 1px solid var(--sub-alt-color); /* Subtle top border */
+  margin: 0;
 }
 
-/* If using a content-grid wrapper inside footer for alignment */
-.site-footer .footer-content.content-grid {
-  /* display: grid; */ /* This would come from .content-grid */
-  /* grid-template-columns: 1fr auto 1fr; /* Example for 3 columns */
-  /* gap: 1rem; */
-  align-items: start; /* Align items to the start of their grid cells */
-}
-
-.footer-column {
-  padding: 0 1rem; /* Padding for each column */
-}
-
-.footer-column h4 { /* Example: if using headings in footer columns */
+/* --- Footer Links --- */
+.footer-link {
   font-family: 'Roboto Mono', monospace;
-  font-size: 0.9rem; /* Slightly larger than base footer text */
-  color: var(--text-color); /* More prominent than sub-color */
+  color: var(--sub-color);
+  text-decoration: none;
+  font-size: 0.75rem;
+  transition: color 0.125s ease-in-out;
+}
+
+.footer-link:hover,
+.footer-link:focus {
+  color: var(--text-color);
+  text-decoration: underline;
+}
+
+/* --- Footer Columns (if needed) --- */
+.footer-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.footer-column h4 {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.9rem;
+  color: var(--text-color);
   margin-bottom: 0.5rem;
-  font-weight: bold; /* Or 600 if available */
+  font-weight: 500;
 }
 
 .footer-column ul {
-  list-style: none; /* Remove default list styling */
+  list-style: none;
   padding: 0;
   margin: 0;
 }
@@ -60,63 +67,61 @@
   margin-bottom: 0.35rem;
 }
 
-.footer-column ul li a,
-.footer-link { /* Generic class for footer links */
+.footer-column ul li a {
   font-family: 'Roboto Mono', monospace;
   color: var(--sub-color);
   text-decoration: none;
-  font-size: 0.75rem; /* Ensure links match footer text size */
+  font-size: 0.75rem;
   transition: color 0.125s ease-in-out;
 }
 
 .footer-column ul li a:hover,
-.footer-column ul li a:focus,
-.footer-link:hover,
-.footer-link:focus {
-  color: var(--text-color); /* Brighter on hover */
-  text-decoration: underline; /* Optional: underline on hover for clarity */
+.footer-column ul li a:focus {
+  color: var(--text-color);
+  text-decoration: underline;
 }
 
-/* Key tips styling (from .keyTips in footer.scss) */
+/* --- Key Tips Styling --- */
 .footer-key-tips {
   margin-bottom: 1.5em;
   line-height: 1.8;
-  font-size: 0.7rem; /* Smaller than base footer text */
-  text-align: center; /* Center key tips if they are a block */
+  font-size: 0.7rem;
+  text-align: center;
   color: var(--sub-color);
 }
 
-.footer-key-tips key, /* Styling for <key> elements */
-.footer-key-tips kbd { /* Common alternative for keyboard keys */
+.footer-key-tips key,
+.footer-key-tips kbd {
   font-family: 'Roboto Mono', monospace;
-  background-color: var(--sub-alt-color); /* Darker background for keys */
-  color: var(--text-color); /* Text color for keys */
+  background-color: var(--sub-alt-color);
+  color: var(--text-color);
   padding: 0.1em 0.4em;
   margin: 0 0.25rem;
-  border-radius: 0.15rem; /* Slightly rounded */
-  border: 1px solid var(--sub-color); /* Subtle border around keys */
-  font-size: 0.9em; /* Relative to parent .footer-key-tips */
+  border-radius: 0.15rem;
+  border: 1px solid var(--border-color);
+  font-size: 0.9em;
 }
 
-/* Copyright or version information */
+/* --- Copyright/Version Info --- */
 .footer-copyright,
 .footer-version {
-  font-size: 0.7rem; /* Even smaller for less prominent info */
+  font-size: 0.7rem;
   color: var(--sub-color);
-  text-align: center; /* Center this text if it's a block */
-  margin-top: 1.5rem; /* Space above copyright */
+  text-align: center;
+  margin-top: 1.5rem;
 }
 
-.footer-version a { /* If version is a link */
+.footer-version a {
   color: var(--sub-color);
 }
+
 .footer-version a:hover {
   color: var(--text-color);
 }
 
-/* Example: Social media links if any */
+/* --- Social Media Links --- */
 .footer-social-links {
-  text-align: center; /* Or align as per column */
+  text-align: center;
   margin-top: 1rem;
 }
 
@@ -124,10 +129,42 @@
   display: inline-block;
   margin: 0 0.5rem;
   color: var(--sub-color);
-  font-size: 1.2rem; /* Larger for icons */
+  font-size: 1.2rem;
+  transition: color 0.125s ease-in-out;
 }
 
 .footer-social-links a:hover,
 .footer-social-links a:focus {
-  color: var(--main-color); /* Use main color for social icon hover */
+  color: var(--main-color);
+}
+
+/* --- Responsive Footer --- */
+@media (max-width: 768px) {
+  .footer-content {
+    padding: 0 1rem;
+  }
+  
+  .footer-columns {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .footer-key-tips {
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-footer {
+    padding: 1.5rem 0;
+  }
+  
+  .footer-content {
+    padding: 0 0.5rem;
+  }
+  
+  .footer-social-links a {
+    margin: 0 0.25rem;
+    font-size: 1rem;
+  }
 }
